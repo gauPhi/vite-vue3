@@ -45,7 +45,7 @@ function clearCanves(): void {
 const saveCanves = async () => {
   try {
     const base64Data = await vueEsignRef.value.generate()
-    console.log('res', base64Data)
+    // console.log('res', base64Data)
     img.value = base64Data
     const blob = dataURLtoBlob(base64Data);
 
@@ -67,8 +67,10 @@ const saveCanves = async () => {
 //将base64转换为blob
 function dataURLtoBlob(dataurl: string) {
   const arr = dataurl.split(',');
-  const mime = arr[0].match(/:(.*?);/)[1];
+  console.log('arr', arr);
 
+  const mime = arr[0].match(/:(.*?);/)![1];
+  console.log('mime', mime);
   const bstr = atob(arr[1]);
   let n = bstr.length;
   const u8arr = new Uint8Array(n);
