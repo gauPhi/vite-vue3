@@ -30,7 +30,7 @@ const lineColor = ref('#000000')
 const isCrop = ref(false)
 const img = ref('')
 
-const clientWidth = ref(400)
+const clientWidth = ref(500)
 const clientHeight = ref(250)
 //打开弹框
 // const openSign = async () => {
