@@ -16,8 +16,13 @@
       <vxe-column field="sex" title="Sex"></vxe-column>
       <vxe-column field="age" title="Age"></vxe-column>
     </vxe-table>
-    <div class="bg-light-500"></div>
 
+    <div class="bg-light-500"></div>
+    <h1>{{ name }}</h1>
+    <h1>{{ count }}</h1>
+    <a-button @click="handleChange">+20</a-button>
+
+    <p>{{ count20 }}</p>
 
   </div>
 </template>
@@ -25,6 +30,10 @@
 import { onMounted, reactive, ref, UnwrapRef, watch, provide } from 'vue'
 
 import { VxeTablePropTypes } from 'vxe-table'
+
+import { useMainStore } from '../../store'
+
+import { storeToRefs } from 'pinia'
 
 interface RowVO {
   id: number
@@ -45,4 +54,13 @@ const tableData = ref<RowVO[]>([
   { id: 10003, name: 'Test3', nameLang: 'Test2Test2Test2', role: 'PM', sex: 'Man', age: 32, address: 'Shanghai' },
   { id: 10004, name: 'Test4', nameLang: 'Test2Test2Test2', role: 'Designer', sex: 'Women', age: 24, address: 'Shanghai' }
 ])
+
+const mainStore = useMainStore()
+
+const { name, count, count20 } = storeToRefs(mainStore)
+
+const handleChange = () => {
+  mainStore.changeState(10)
+}
+
 </script>
